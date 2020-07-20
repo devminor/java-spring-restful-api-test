@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class uk.co.huntersix.spring.rest.controller.HttpRequestTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class uk.co.huntersix.spring.rest.controller.HttpRequestTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/uk.co.huntersix.spring.rest.controller.html">uk.co.huntersix.spring.rest.controller</a> &gt; HttpRequestTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.246s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">shouldReturnPersonDetails</td>
+<td class="success">0.246s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2020-07-21 00:08:13.963  INFO 25917 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.co.huntersix.spring.rest.controller.HttpRequestTest], using SpringBootContextLoader
+2020-07-21 00:08:13.963  INFO 25917 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.co.huntersix.spring.rest.controller.HttpRequestTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2020-07-21 00:08:13.964  INFO 25917 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.co.huntersix.spring.rest.controller.HttpRequestTest]: HttpRequestTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2020-07-21 00:08:13.970  INFO 25917 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.co.huntersix.spring.rest.Application for test class uk.co.huntersix.spring.rest.controller.HttpRequestTest
+2020-07-21 00:08:13.971  INFO 25917 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2020-07-21 00:08:13.972  INFO 25917 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@bdd0fc1, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2396dcc7, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5301ff29, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7e27c944, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1de76246, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@882f5d9, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@54a6bb57, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@148b256e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@325890eb, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2d6b9744]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.6.RELEASE)
+
+2020-07-21 00:08:13.997  INFO 25917 --- [    Test worker] u.c.h.s.rest.controller.HttpRequestTest  : Starting HttpRequestTest on Kemals-MacBook-Pro.local with PID 25917 (started by kemal in /Users/kemal/Desktop/cop/java-spring-restful-api-test)
+2020-07-21 00:08:13.997  INFO 25917 --- [    Test worker] u.c.h.s.rest.controller.HttpRequestTest  : No active profile set, falling back to default profiles: default
+2020-07-21 00:08:14.301  INFO 25917 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2020-07-21 00:08:14.333  INFO 25917 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-21 00:08:14.333  INFO 25917 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2020-07-21 00:08:14.427  INFO 25917 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-07-21 00:08:14.427  INFO 25917 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 427 ms
+2020-07-21 00:08:14.652  INFO 25917 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-21 00:08:14.769  INFO 25917 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 60965 (http) with context path ''
+2020-07-21 00:08:14.770  INFO 25917 --- [    Test worker] u.c.h.s.rest.controller.HttpRequestTest  : Started HttpRequestTest in 0.797 seconds (JVM running for 3.76)
+2020-07-21 00:08:14.872  INFO 25917 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-21 00:08:14.872  INFO 25917 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-21 00:08:14.888  INFO 25917 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 4.9</a> at 21-Jul-2020 00:08:15</p>
+</div>
+</div>
+</body>
+</html>
