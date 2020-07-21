@@ -126,7 +126,7 @@ public class PersonControllerTest {
         this.mockMvc.perform(post("/person").contentType(MediaType.APPLICATION_JSON_UTF8).content(jsonBody))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Person already exists"));
+                .andExpect(status().reason("Entity already exists"));
 
     }
 
