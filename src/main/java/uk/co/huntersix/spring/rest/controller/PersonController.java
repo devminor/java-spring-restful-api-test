@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 public class PersonController {
-    private PersonDataService personDataService;
+    private final PersonDataService personDataService;
 
     public PersonController(@Autowired PersonDataService personDataService) {
         this.personDataService = personDataService;

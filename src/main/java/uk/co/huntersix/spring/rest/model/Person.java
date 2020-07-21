@@ -9,9 +9,6 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    private Person() {
-        // empty
-    }
 
     public Person(String firstName, String lastName) {
         this.id = counter.incrementAndGet();
@@ -21,10 +18,6 @@ public class Person {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {

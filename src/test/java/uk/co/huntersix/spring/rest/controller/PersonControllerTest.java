@@ -90,7 +90,7 @@ public class PersonControllerTest {
 
     @Test
     public void shouldReturnSingleResultWhileSearchBySurname() throws Exception {
-        when(personDataService.findPerson("smith")).thenReturn(Arrays.asList(
+        when(personDataService.findPerson("smith")).thenReturn(Collections.singletonList(
                 new Person("Marvel", "Smith")
         ));
         this.mockMvc.perform(get("/person/smith"))

@@ -30,7 +30,7 @@ public class HttpRequestTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void shouldReturnPersonDetails() throws Exception {
+    public void shouldReturnPersonDetails() {
         assertThat(
                 this.restTemplate.getForObject(
                         "http://localhost:" + port + "/person/smith/mary",
@@ -48,18 +48,18 @@ public class HttpRequestTest {
     }
 
     @Test
-    public void shouldReturnMultipleResultWhileSearchBySurname()  {
+    public void shouldReturnMultipleResultWhileSearchBySurname() {
         Person[] personList = this.restTemplate.getForObject("http://localhost:" + port + "/person/smith", Person[].class);
         assertNotNull(personList);
-        assertThat(personList.length > 0);
-        assertFalse(Arrays.stream(personList).filter(t -> !t.getLastName().equalsIgnoreCase("smith")).findAny().isPresent());
+        assertTrue(personList.length > 0);
+        assertFalse(Arrays.stream(personList).anyMatch(t -> !t.getLastName().equalsIgnoreCase("smith")));
     }
 
     @Test
     public void shouldReturnEmptyArrayIfNotFoundAnyWhileSearchBySurname() {
         Person[] personList = this.restTemplate.getForObject("http://localhost:" + port + "/person/xyz", Person[].class);
         assertNotNull(personList);
-        assertThat(personList.length == 0);
+        assertEquals(0, personList.length);
     }
 
     @Test
@@ -73,6 +73,7 @@ public class HttpRequestTest {
 
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
         assertEquals("Marvel", response.getBody().getFirstName());
         assertEquals("Bryn", response.getBody().getLastName());
     }
