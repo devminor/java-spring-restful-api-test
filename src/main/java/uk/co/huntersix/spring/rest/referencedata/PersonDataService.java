@@ -25,6 +25,8 @@ public class PersonDataService {
     }
 
     public List<Person> findPerson(String lastName) {
-        return null;
+        return PERSON_DATA.stream()
+                .filter(p -> p.getLastName().equalsIgnoreCase(lastName))
+                .collect(Collectors.toList());
     }
 }
