@@ -1,6 +1,7 @@
 package uk.co.huntersix.spring.rest.referencedata;
 
 import org.springframework.stereotype.Service;
+import uk.co.huntersix.spring.rest.exception.EntityNotFoundException;
 import uk.co.huntersix.spring.rest.model.Person;
 
 import java.util.Arrays;
@@ -19,6 +20,7 @@ public class PersonDataService {
         return PERSON_DATA.stream()
             .filter(p -> p.getFirstName().equalsIgnoreCase(firstName)
                 && p.getLastName().equalsIgnoreCase(lastName))
-            .collect(Collectors.toList()).get(0);
+                .findFirst().orElseThrow(EntityNotFoundException::new)
+            ;
     }
 }

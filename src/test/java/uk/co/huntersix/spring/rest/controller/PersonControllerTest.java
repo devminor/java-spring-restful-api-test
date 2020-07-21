@@ -45,6 +45,6 @@ public class PersonControllerTest {
         this.mockMvc.perform(get("/person/john/doe"))
                 .andDo(print())
                 .andExpect(status().isNotFound())
-                .andExpect(status().reason("Person not found"));
+                .andExpect(status().reason("Entity not found"));
     }
 }
