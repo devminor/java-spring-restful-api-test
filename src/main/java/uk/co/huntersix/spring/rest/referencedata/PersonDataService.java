@@ -23,4 +23,8 @@ public class PersonDataService {
                 .findFirst().orElseThrow(EntityNotFoundException::new)
             ;
     }
+
+    public List<Person> findPerson(String lastName) {
+        return null;
+    }
 }
