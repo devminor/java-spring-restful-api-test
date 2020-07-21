@@ -73,7 +73,6 @@ public class HttpRequestTest {
 
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNotNull(response.getBody().getId());
         assertEquals("Marvel", response.getBody().getFirstName());
         assertEquals("Bryn", response.getBody().getLastName());
     }
@@ -87,6 +86,6 @@ public class HttpRequestTest {
         ResponseEntity<Map> response = restTemplate
                 .exchange("http://localhost:" + port + "/person", HttpMethod.POST, request, Map.class);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals("Person already exists", response.getBody().get("message"));
+        assertEquals("Entity already exists", response.getBody().get("message"));
     }
 }
