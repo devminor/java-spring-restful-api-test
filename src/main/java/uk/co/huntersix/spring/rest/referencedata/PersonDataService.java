@@ -19,14 +19,18 @@ public class PersonDataService {
     public Person findPerson(String lastName, String firstName) {
         return PERSON_DATA.stream()
             .filter(p -> p.getFirstName().equalsIgnoreCase(firstName)
-                && p.getLastName().equalsIgnoreCase(lastName))
+                    && p.getLastName().equalsIgnoreCase(lastName))
                 .findFirst().orElseThrow(EntityNotFoundException::new)
-            ;
+                ;
     }
 
     public List<Person> findPerson(String lastName) {
         return PERSON_DATA.stream()
                 .filter(p -> p.getLastName().equalsIgnoreCase(lastName))
                 .collect(Collectors.toList());
+    }
+
+    public Person addPerson(Person person) {
+        return null;
     }
 }

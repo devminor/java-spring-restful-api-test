@@ -1,26 +1,29 @@
 package uk.co.huntersix.spring.rest.controller;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import uk.co.huntersix.spring.rest.exception.EntityAlreadyExistException;
 import uk.co.huntersix.spring.rest.exception.EntityNotFoundException;
 import uk.co.huntersix.spring.rest.model.Person;
 import uk.co.huntersix.spring.rest.referencedata.PersonDataService;
 
 import java.util.Arrays;
 import java.util.Collections;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(PersonController.class)
@@ -88,15 +91,43 @@ public class PersonControllerTest {
     @Test
     public void shouldReturnSingleResultWhileSearchBySurname() throws Exception {
         when(personDataService.findPerson("smith")).thenReturn(Arrays.asList(
-                new Person("Marvel","Smith")
+                new Person("Marvel", "Smith")
         ));
         this.mockMvc.perform(get("/person/smith"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$",hasSize(1)))
+                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].firstName").value("Marvel"))
                 .andExpect(jsonPath("$[0].lastName").value("Smith"));
+    }
+
+
+    @Test
+    public void shouldCreateNewPerson() throws Exception {
+        String jsonBody = "{\"firstName\":\"Marvel\",\"lastName\":\"Bryn\"}";
+
+        when(personDataService.addPerson(any())).thenReturn(new Person("Marvel", "Bryn"));
+
+        this.mockMvc.perform(post("/person").contentType(MediaType.APPLICATION_JSON_UTF8).content(jsonBody))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").exists())
+                .andExpect(jsonPath("firstName").value("Marvel"))
+                .andExpect(jsonPath("lastName").value("Bryn"));
+
+    }
+
+    @Test
+    public void shouldReturnBadRequestWhenPersonAlreadyExist() throws Exception {
+        String jsonBody = "{\"firstName\":\"Marvel\",\"lastName\":\"Bryn\"}";
+        when(personDataService.addPerson(any())).thenThrow(EntityAlreadyExistException.class);
+
+        this.mockMvc.perform(post("/person").contentType(MediaType.APPLICATION_JSON_UTF8).content(jsonBody))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(status().reason("Person already exists"));
+
     }
 
 }

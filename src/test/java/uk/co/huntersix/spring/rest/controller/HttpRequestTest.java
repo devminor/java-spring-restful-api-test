@@ -6,10 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import uk.co.huntersix.spring.rest.model.Person;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,9 +56,37 @@ public class HttpRequestTest {
     }
 
     @Test
-    public void shouldReturnEmptyArrayIfNotFoundAnyWhileSearchBySurname()  {
+    public void shouldReturnEmptyArrayIfNotFoundAnyWhileSearchBySurname() {
         Person[] personList = this.restTemplate.getForObject("http://localhost:" + port + "/person/xyz", Person[].class);
         assertNotNull(personList);
         assertThat(personList.length == 0);
+    }
+
+    @Test
+    public void shouldCreateNewPerson() {
+        Map<String, String> map = new HashMap<>();
+        map.put("firstName", "Marvel");
+        map.put("lastName", "Bryn");
+        HttpEntity<Map> request = new HttpEntity<>(map);
+        ResponseEntity<Person> response = restTemplate
+                .exchange("http://localhost:" + port + "/person", HttpMethod.POST, request, Person.class);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody().getId());
+        assertEquals("Marvel", response.getBody().getFirstName());
+        assertEquals("Bryn", response.getBody().getLastName());
+    }
+
+    @Test
+    public void shouldReturnBadRequestWhenPersonAlreadyExist() {
+        Map<String, String> map = new HashMap<>();
+        map.put("firstName", "Mary");
+        map.put("lastName", "Smith");
+        HttpEntity<Map> request = new HttpEntity<>(map);
+        ResponseEntity<Map> response = restTemplate
+                .exchange("http://localhost:" + port + "/person", HttpMethod.POST, request, Map.class);
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals("Person already exists", response.getBody().get("message"));
     }
 }
