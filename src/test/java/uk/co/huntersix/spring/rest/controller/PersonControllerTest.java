@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import uk.co.huntersix.spring.rest.exception.EntityNotFoundException;
 import uk.co.huntersix.spring.rest.model.Person;
 import uk.co.huntersix.spring.rest.referencedata.PersonDataService;
 
@@ -36,5 +37,14 @@ public class PersonControllerTest {
             .andExpect(jsonPath("id").exists())
             .andExpect(jsonPath("firstName").value("Mary"))
             .andExpect(jsonPath("lastName").value("Smith"));
+    }
+
+    @Test
+    public void shouldReturnNotFoundWhenPersonNotFound() throws Exception {
+        when(personDataService.findPerson(any(), any())).thenThrow(EntityNotFoundException.class);
+        this.mockMvc.perform(get("/person/john/doe"))
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(status().reason("Person not found"));
     }
 }
